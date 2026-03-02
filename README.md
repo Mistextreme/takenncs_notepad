@@ -30,14 +30,14 @@ A modern, feature-rich notepad system for FiveM (QBCore) with ox_inventory, ox_l
    - Add the item to your `ox_inventory/data/items.lua`:
 
 ```
-['takenncs_stickynotes'] = {
-    label = 'notepad',
+['takenncs_notepad'] = {
+    label = 'Märkmik',
     weight = 100,
     stack = false,
     degrade = 0,
     description = 'Write down your thoughts',
     client = {
-        export = 'takenncs_stickynotes.openEditor',
+        export = 'takenncs_notepad.openEditor',
         image = 'notepad.png',
     }
 }
@@ -59,3 +59,4 @@ CREATE TABLE IF NOT EXISTS `sticky_notes` (
     UNIQUE KEY `unique_slot` (`identifier`, `slot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ````
+
