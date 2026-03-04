@@ -58,7 +58,7 @@ function openEditor(data) {
 
     const lockBtn = document.getElementById('lockBtn');
     const container = document.querySelector('.note-container');
-    
+
     if (isLocked) {
         lockBtn.innerHTML = '<i class="fas fa-lock"></i>';
         lockBtn.classList.add('locked');
@@ -138,7 +138,7 @@ function toggleLock() {
     isLocked = !isLocked;
     const lockBtn = document.getElementById('lockBtn');
     const container = document.querySelector('.note-container');
-    
+
     if (isLocked) {
         lockBtn.innerHTML = '<i class="fas fa-lock"></i>';
         lockBtn.classList.add('locked');
