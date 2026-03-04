@@ -58,12 +58,21 @@ RegisterNetEvent('takenncs_notepad:server:duplicateDocument', function(data)
     local identifier = xPlayer.getIdentifier()
     local newTitle = (data.title or "Pealkirjata märkmik") .. " (koopia)"
 
-    exports.ox_inventory:AddItem(src, Config.ItemName, 1, {})
+    local added, reason = exports.ox_inventory:AddItem(src, Config.ItemName, 1, {})
+    if not added then
+        TriggerClientEvent('ox_lib:notify', src, {
+            title = 'Märkmik',
+            description = 'Ei saanud koopiat luua: ' .. (reason or 'inventar täis'),
+            type = 'error'
+        })
+        return
+    end
+
     Citizen.Wait(100)
 
-    local items = exports.ox_inventory:GetItems(src, nil, Config.ItemName)
-    if items and #items > 0 then
-        local newSlot = items[#items].slot
+    local found = exports.ox_inventory:Search(src, 'slots', Config.ItemName)
+    if found and #found > 0 then
+        local newSlot = found[#found].slot
         MySQL.insert('INSERT INTO notepad_notes (identifier, slot, title, content, locked, last_edited) VALUES (?, ?, ?, ?, ?, ?)', {
             identifier,
             newSlot,
