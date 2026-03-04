@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local ESX = exports['es_extended']:getSharedObject()
 
 CreateThread(function()
     MySQL.query([[
@@ -19,10 +19,10 @@ end)
 
 RegisterNetEvent('takenncs_notepad:server:saveDocument', function(data)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
-    if not Player or not data.slot then return end
+    local xPlayer = ESX.GetPlayerFromId(src)
+    if not xPlayer or not data.slot then return end
 
-    local identifier = Player.PlayerData.citizenid
+    local identifier = xPlayer.getIdentifier()
     local slot = tonumber(data.slot)
     if not slot then return end
 
@@ -52,15 +52,15 @@ end)
 
 RegisterNetEvent('takenncs_notepad:server:duplicateDocument', function(data)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
-    if not Player then return end
+    local xPlayer = ESX.GetPlayerFromId(src)
+    if not xPlayer then return end
 
-    local identifier = Player.PlayerData.citizenid
+    local identifier = xPlayer.getIdentifier()
     local newTitle = (data.title or "Pealkirjata märkmik") .. " (koopia)"
 
     exports.ox_inventory:AddItem(src, Config.ItemName, 1, {})
     Citizen.Wait(100)
-    
+
     local items = exports.ox_inventory:GetItems(src, nil, Config.ItemName)
     if items and #items > 0 then
         local newSlot = items[#items].slot
@@ -83,10 +83,10 @@ end)
 
 RegisterNetEvent('takenncs_notepad:server:loadDocument', function(slot)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
-    if not Player then return end
+    local xPlayer = ESX.GetPlayerFromId(src)
+    if not xPlayer then return end
 
-    local identifier = Player.PlayerData.citizenid
+    local identifier = xPlayer.getIdentifier()
     local slotNum = tonumber(slot)
     if not slotNum then return end
 
