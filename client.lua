@@ -1,4 +1,3 @@
-local ESX = exports['es_extended']:getSharedObject()
 local currentSlot = nil
 
 local function openEditor(data)
