@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 author 'Takenncs'
-description 'Takenncs Notepad'
+description 'Takenncs Notepad - ESX Version'
 version '1.0.0'
 
 client_scripts {
@@ -25,8 +25,8 @@ files {
 }
 
 dependencies {
+    'es_extended',
     'ox_lib',
-    'ox_target',
     'ox_inventory',
     'oxmysql'
 }
