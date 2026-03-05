@@ -129,6 +129,15 @@ body {
     transform: rotate(15deg);
 }
 
+.btn-duplicate {
+    background: #3a3a4c;
+    color: #fff;
+}
+
+.btn-duplicate:hover {
+    background: #4a4a5c;
+}
+
 .note-title-section {
     padding: 15px 25px;
     background: #1e1e2f;
